@@ -17,7 +17,7 @@ I used Python packages kafka and tweepy to stream twitter data to Kafka. The cod
 
 ## Positive/Negative word monitor with Kafka and Spark
 I gathered certain amount of data in Kafka, and sent them to Spark. I'm trying to monitor the positive/negative feelings of the users based on their tweets. I used pyspark Python library to process data in Spark read from Kafka. After getting the tweets into Spark, I extracted all the positive/negative words from them. flatMap and reduceByKey are used during the data processing. Finally, I used matplotlib library to plot feelings of users. The codes are included in the Kafka folder. One of the final plots is shown below: <br/>
-![feelings]()
+![feelings](https://github.com/ZjWeb200/TwitterProcessor/blob/master/feelingAnalysis.png)
 
 ## Real-time processor with Spark for popular Twitter hashtags
 In this part, I wish to construct a real-time top popular Twitter hashtag visualization. 
