@@ -25,3 +25,8 @@ Note, Kafka is not involved in this part. What I've done is reading tweets from 
 On the Spark end, I processed data every 1 sec, i.e. 1 sec mini batch. In order to update hashtag word counts, I need to store the history and update it in real-time. Here, I chose to use checkpoint file and updateStateByKey. A very good doc can be found here: [Cumulative Calculations: updateStateByKey()](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/logs_analyzer/chapter1/total.html). To get the top popular hashtags, we need to sort all the hashtags based on their appearance counts. I did this by using pystark package's sql. The SQL "select" query is able to give us the top n (n = 8 in this project) hashtags. Finally, send these data to Flask to show the real-time results. Flask gets data from Spark and sends data to our browser. These two events happen in parallel and are accomplished by Flask routing. <br/>
 To plot chart in html, I used [Chart.js](https://github.com/chartjs/Chart.js).
 
+## Interesting results
+On Oct.20th, 2019, 10:30am PDT, I just finished watching the Premier League game Man. Utd vs. Liverpool FC. Two great rivalries played the game in Old Trafford. It's a great opportunity to check if Twitter users are watching the game! Thus, I pulled out my top-8 popular Twitter hashtag app and found this:
+![popular](https://github.com/ZjWeb200/TwitterProcessor/blob/master/top_hashtag.gif)
+Without any suprise, the top hashtags have "#MUNLIV", "#MANLIV". They belong to Man.Utd, today's home team. And of course, there is "#YNWA" in the chart. It belongs to Liverpool's "You Never Walk Alone".
+As you can see, the app is working smoothly and provides you the most popular topics at the moment as expected.
