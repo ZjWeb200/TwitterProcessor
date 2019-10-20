@@ -20,4 +20,8 @@ I gathered certain amount of data in Kafka, and sent them to Spark. I'm trying t
 ![feelings]()
 
 ## Real-time processor with Spark for popular Twitter hashtags
-In this part of the project, Kafka is actually not involved. What I've done is reading tweets from Twitter API directly into Spark. 
+In this part, I wish to construct a real-time top popular Twitter hashtag visualization. 
+Note, Kafka is not involved in this part. What I've done is reading tweets from Twitter API directly into Spark. I used the elegant requests python library to send http requests to Twitter API and got the JSON format response. After extracting the tweet content under the 'text' key, send it to Spark in a data stream manner. <br/>
+On the Spark end, I processed data every 1 sec, i.e. 1 sec mini batch. In order to update hashtag word counts, I need to store the history and update it in real-time. Here, I chose to use checkpoint file and updateStateByKey. A very good doc can be found here: [Cumulative Calculations: updateStateByKey()](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/logs_analyzer/chapter1/total.html). To get the top popular hashtags, we need to sort all the hashtags based on their appearance counts. I did this by using pystark package's sql. The SQL "select" query is able to give us the top n (n = 8 in this project) hashtags. Finally, send these data to Flask to show the real-time results. Flask gets data from Spark and sends data to our browser. These two events happen in parallel and are accomplished by Flask routing. <br/>
+To plot chart in html, I used [Chart.js](https://github.com/chartjs/Chart.js).
+
