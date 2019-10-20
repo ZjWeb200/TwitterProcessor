@@ -3,7 +3,7 @@ This project amis to use Kafka and Spark to do some fun big data processings wit
 
 # Big Picture
 Before going into the details, we have a big picture diagram to illustrate the project structure.
-![diagram]()
+![diagram](https://github.com/ZjWeb200/TwitterProcessor/blob/master/diagram.png)
 
 
 
