@@ -1,12 +1,23 @@
 # TwitterProcessor
-This project amis to use Kafka and Spark to do some fun big data processings with Twitter. Twitter API is used to get 1% of public tweets (which is already lots of data). We store these tweets in Kafka and use Spark to analyze the hashtags contained in these tweets. Our goal is to find out top-8 popular hashtags in real-time. The result is shown within Flask for quick visualization. Besides these, we also use Spark to analysis user feelings (positive or negative) based on their tweets. We will show this analysis with a Python plot as well.
+This project amis to use Kafka and Spark to do some fun big data processings with Twitter. Twitter API is used to get 1% of public tweets (which is already lots of data). We store these tweets in Kafka and use Spark to analyze the hashtags contained in these tweets. Our goal is to find out top-8 popular hashtags in real-time. The result is shown within Flask for quick visualization. Besides these, we also use Spark to analysis user feelings (positive or negative) based on their tweets. We will show this analysis with a Python plot as well. As usual, this project is run on the cloud. This time, I chose Google Cloud Platform.
 
 # Big Picture
 Before going into the details, we have a big picture diagram to illustrate the project structure.
 ![diagram](https://github.com/ZjWeb200/TwitterProcessor/blob/master/diagram.png)
 
+# Details about the project
+## The Twitter API
+I applied a Twitter API account from this link [Twitter API](https://developer.twitter.com/en/apps)
+I got my keys and tokens from there (they are required almost every step in the project...).
+To fetch the tweets, I used the [statuses/filter](https://developer.twitter.com/en/docs/tweets/filter-realtime/api-reference/post-statuses-filter) API. This API responds in JSON format, and the actual tweet contents is under the 'text' key.
 
+## Something about Apache Kafka
+I chose to use Kafka here as a broker between the Twitter stream and Spark. Kafka temporarily stores input stream data locally and then redirects them to the processing engines (in our project Spark).
+I used Python packages kafka and tweepy to stream twitter data to Kafka. The code is pretty neat and straightforward.
 
-# Something about Apache Kafka
-I chose to use Kafka here as a broker between the Twitter stream and Spark. Kafka temporarily stores input stream data locally and then redirects them to the processing engines (in our project Spark) later.
+## Positive/Negative word monitor with Kafka and Spark
+I gathered certain amount of data in Kafka, and sent them to Spark. I'm trying to monitor the positive/negative feelings of the users based on their tweets. I used pyspark Python library to process data in Spark read from Kafka. After getting the tweets into Spark, I extracted all the positive/negative words from them. flatMap and reduceByKey are used during the data processing. Finally, I used matplotlib library to plot feelings of users. The codes are included in the Kafka folder. One of the final plots is shown below: <br/>
+![feelings]()
 
+## Real-time processor with Spark for popular Twitter hashtags
+In this part of the project, Kafka is actually not involved. What I've done is reading tweets from Twitter API directly into Spark. 
