@@ -28,5 +28,5 @@ To plot chart in html and show it in browser, I used the [Chart.js](https://gith
 ## Some interesting results
 On Oct. 20th, 2019, 10:30am PDT, I just finished watching the Premier League game Man. Utd vs. Liverpool F.C. The two giant rivalries played the game in Old Trafford. It's a great opportunity to check if Twitter users are watching the game! Thus, I pulled out my top popular Twitter hashtag app and found this:
 ![popular](https://github.com/ZjWeb200/TwitterProcessor/blob/master/top_popular.gif)
-Without any suprise, the top hashtags are "#MUNLIV", "#MANLIV". They belong to Man. Utd, today's Home team. And of course, there is "#YNWA" in the chart. It belongs to Liverpool's famous "You Never Walk Alone". <br/>
+Without any suprise, the top hashtags are "#MUNLIV", "#MANLIV". They belong to Man. Utd, today's Home team. And of course, there is "#YNWA" in the chart. It belongs to Liverpool's famous "You'll Never Walk Alone". <br/>
 As you can see, the pipeline is working smoothly and provides us with the most popular topics on Twitter in real-time as expected.
